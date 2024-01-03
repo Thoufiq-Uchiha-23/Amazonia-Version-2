@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazonia By Thoufiq</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="input.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.js"
+      integrity="sha512-BJ/5sR2hFxQTKin/55JQCcMTObShDBAmVjL/3NR/MVcrhyOazJjAgvROem03+HYyGw16SVdSfoWCFGr9syxAKA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="html"
+      href="./assets/categories/cosmetics.html"
+      target="_blank"
+    />
+    <link
+      rel="html"
+      href="./assets/categories/gym-instrument.html"
+      target="_blank"
+    />
+    <link rel="html" href="./assets/categories/hygiene.html" target="_blank" />
+    <link
+      rel="html"
+      href="./assets/categories/mini-devices.html"
+      target="_blank"
+    />
+    <link rel="html" href="./assets/categories/pets.html" target="_blank" />
+    <link rel="html" href="./assets/categories/plants.html" target="_blank" />
+    <link
+      rel="html"
+      href="./assets/categories/stationaries.html"
+      target="_blank"
+    />
+    <link rel="html" href="./assets/categories/toys.html" target="_blank" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header id="header">
+      <nav
+        class="bg-[#0F1111] h-16 flex justify-around md:justify-evenly items-center text-white text-[7px] md:text-sm"
+      >
+        <a href="#" class="border border-transparent p-1 hover:border-white">
+          <img src="assets/amazon_logo.png" class="w-10 md:w-24 h-auto" />
+        </a>
+
+        <div class="border border-transparent p-1 hover:border-white">
+          <p class="text-[7px] md:text-xs">Deliver to</p>
+          <div class="flex items-center gap-1">
+            <i class="fa-solid fa-location-dot"></i>
+            <p class="font-bold">India</p>
+          </div>
+        </div>
+
+        <div class="text-black flex h-10 md:h-12 p-1">
+          <select class="bg-[#E6E6E6] p-0 md:px-2 rounded-lg rounded-r-none">
+            <option>All</option>
+          </select>
+          <input
+            type="text"
+            placeholder="Search Amazon"
+            class="w-[2vw] md:w-[20vw] pl-2 text-xs md:text-base"
+          />
+          <div class="bg-orange-300 rounded-lg rounded-l-none p-2 text-center">
+            <i class="fa-solid fa-magnifying-glass fa-align-center fa-xl"></i>
+          </div>
+        </div>
+
+        <div class="flex border border-transparent p-1 hover:border-white">
+          <img src="assets/USFlag.png" class="h-4 w-5" />
+          <select class="bg-transparent font-bold">
+            <option>EN</option>
+          </select>
+        </div>
+
+        <div class="border border-transparent p-1 hover:border-white">
+          <p class="text-[7px] md:text-xs p-1">Hello Sign In</p>
+          <div class="bg-transparent font-bold">
+            <li
+              class="dropdown list-none relative p-2 z-10 flex flex-row flex-wrap justify-between items-start"
+            >
+              <a
+                href="#"
+                id="accounts-lists"
+                class="relative text-[7px] md:text-xs"
+                onclick="toggleMenu()"
+                >Accounts and Lists</a
+              >
+              <div
+                id="account-section-wrap"
+                class="dropdown-card text-[12px] leading-3 md:text-xs opacity-100 px-4 flex flex-col flex-wrap absolute top-[100%] right-[10%] md:right-[0%] w-[200px] md:w-[400px] max-h-0 bg-white text-black overflow-hidden"
+              >
+                <div class="card-section p-1 flex flex-col flex-shrink flex-1">
+                  <h3>
+                    <a href="#" class="hover:text-yellow-400">Your Lists</a>
+                  </h3>
+                  <ul
+                    class="dropdown-card text-[7px] md:text-[10px] relative font-medium list-none p-0"
+                  >
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Create a Wish List</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Wish from Any Website</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Baby Wishlist</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Discover Your Style</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Explore Showroom</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-section p-1 flex flex-col flex-shrink">
+                  <h3>
+                    <a href="#" class="hover:text-yellow-400">Your Account</a>
+                  </h3>
+                  <ul
+                    class="dropdown-card relative list-none font-medium p-0 text-[7px] md:text-[10px]"
+                  >
+                    <li>
+                      <a href="#" class="hover:text-yellow-400">Your Orders</a>
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Your Wish List</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Keep Shopping For</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Your Recommendations</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Your Prime Membership</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Your Prime Video</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Your Subscribe & Save Items</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Membership & Subscription</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Your Seller Account</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Manage you Content and Devices</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Your Free Amazon Business Account</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400"
+                        >Switch Accounts</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:text-yellow-400">Sign Out</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </div>
+        </div>
+
+        <div class="border border-transparent p-1 hover:border-white">
+          <p class="text-[7px] md:text-xs">Returns</p>
+          <p class="bg-transparent font-bold">& Orders</p>
+        </div>
+
+        <div class="flex items-center">
+          <i class="fa-solid fa-cart-shopping fa-xl md:fa-2xl"></i>
+          <p class="font-bold p-1 md:pt-2">Cart</p>
+        </div>
+      </nav>
+      <div
+        class="bg-[#222F3D] h-10 flex items-center text-white text-[9px] md:text-sm pl-1 md:pl-4"
+      >
+        <div
+          class="flex items-center gap-1 border border-transparent hover:border-white p-1"
+        >
+          <i class="fa-solid fa-bars fa-lg"></i>
+          <p
+            class="font-bold"
+            class="menu-btn relative"
+            onclick="toggleSidebar()"
+          >
+            All
+          </p>
+          <div
+            class="sidebar pt-10 pl-5 text-xs md:text-sm overflow-x-auto pb-8 bg-white"
+            id="sidebar"
+          >
+            <h2 class="mt-5 text-black font-bold">Trending</h2>
+            <ul class="text-slate-600 md:font-semibold">
+              <li>
+                <a href="#" class="hover:text-black"
+                  >Best Sellers<i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  >New Releases<i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  >Movers & Shakers<i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+            </ul>
+
+            <h2 class="mt-5 text-black font-bold">
+              Digital Content and Devices
+            </h2>
+            <ul class="text-slate-600 md:font-semibold">
+              <li>
+                <a href="#" class="hover:text-black" class="hover:text-black"
+                  ><span>Amazon mini-TV and Entertainment</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Echo & Alexa</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Fire TV</span><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Kindle E-Readers & eBooks</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Audible Audiobooks</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Amazon Prime Video</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Amazon Prime Music</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+            </ul>
+
+            <h2 class="mt-5 text-black font-bold">Shops & Categories</h2>
+            <ul class="text-slate-600 md:font-semibold">
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Mobiles & Computers</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>TV Electronics</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Men's Fashion</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Women's Fashion</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+            </ul>
+
+            <h2 class="mt-5 text-black font-bold">Programs and Features</h2>
+            <ul class="text-slate-600 md:font-semibold">
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Amazon Pay</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Gift Cards & Mobile Recharges</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Amazon Launchpad</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Handlooms & Handicrafts</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+            </ul>
+
+            <h2 class="mt-5 text-black font-bold">Help & Settings</h2>
+            <ul class="text-slate-600 md:font-semibold">
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Your Account</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Customer Service</span
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-black"
+                  ><span>Sign Out</span><i class="fa-solid fa-chevron-right"></i
+                ></a>
+              </li>
+            </ul>
+            <i
+              id="x"
+              class="fa-solid fa-xmark absolute top-2 left-[90%] font-extrabold text-xl md:text-2xl text-slate-400 z-10 p-1"
+            ></i>
+          </div>
+        </div>
+
+        <ul class="flex items-center">
+          <li class="border border-transparent hover:border-white p-1">
+            Today's Deals
+          </li>
+          <li class="border border-transparent hover:border-white p-1">
+            Customer Service
+          </li>
+          <li class="border border-transparent hover:border-white p-1">
+            Registry
+          </li>
+          <li class="border border-transparent hover:border-white p-1">
+            Gift Cards
+          </li>
+          <li class="border border-transparent hover:border-white p-1">Sell</li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="bg-[#E6E6E6] pb-5">
+      <!-- Carousel Section -->
+
+      <div
+        id="indicators-carousel"
+        class="relative w-full bg-white my-5 h-30 -z-0"
+        data-carousel="static"
+      >
+        <!-- Carousel wrapper -->
+        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+          <!-- Item 1 -->
+          <div
+            class="hidden duration-700 ease-in-out"
+            data-carousel-item="active"
+          >
+            <a
+              href="https://www.amazon.in/b/?_encoding=UTF8&node=15325111031&pd_rd_w=UZCAe&content-id=amzn1.sym.350eb91c-18ee-4ea9-a871-eeb0810ef28b&pf_rd_p=350eb91c-18ee-4ea9-a871-eeb0810ef28b&pf_rd_r=Q8QJ3RBP8XETM5QP588J&pd_rd_wg=qQzTt&pd_rd_r=3a1be1fe-4e12-4d89-bf45-b1fe3b05147f"
+            >
+              <img
+                alt="Amazon fashion"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img23/Fashion/Gw/Dec/Kotak/PFF-3000-PC._CB586287632_.jpg"
+                height="100%"
+                width="1500px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img23/Fashion/Gw/Dec/Kotak/PFF-3000-PC._CB586287632_.jpg"
+              />
+            </a>
+          </div>
+          <!-- Item 2 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a
+              href="https://www.amazon.in/s/?_encoding=UTF8&i=fashion&bbn=4091091031&rh=n%3A4091091031%2Cp_85%3A10440599031%2Cp_36%3A-24900%2Cp_72%3A1318476031%2Cp_n_feature_nineteen_browse-bin%3A11301357031%7C14852585031%7C27064186031%2Cp_89%3AAarika%7CAllen%20Solly%7CBIBA%7CBODYCARE%7CBon%20Organik%7CCHERRY%20CRUMBLE%7CCherry%20Crumble%20California%7CCloth%20Theory%7CGini%20%26%20Jony%7CHopscotch%7CKidsville%7CMINI%20KLUB%7CMax%7CMothercare%7CNaughty%20Ninos%7CT2F%7Cglobal%20desi%2Cp_n_is_cod_eligible%3A4931671031&s=relevanceblender&hidden-keywords=-bow-sock-head-hair-cap-belt-metal-eye-glass-bow-tie-knot-vest-decoration-mitten-sweatshirt-boxer-inner-jockey&pd_rd_w=1XNdJ&content-id=amzn1.sym.1f3b661d-e7bf-43e6-960c-1b4fa4db7305&pf_rd_p=1f3b661d-e7bf-43e6-960c-1b4fa4db7305&pf_rd_r=RTWPF6A4DNW2QX6M322T&pd_rd_wg=3nbK7&pd_rd_r=ba246edf-72be-4d78-9365-7916a56ee808"
+            >
+              <img
+                alt="WA"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img2020/img21/apparelGW/dec23atf/eoss/unrec/kotak/KA_3000._CB586338069_.jpg"
+                height="100%"
+                width="1500px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img2020/img21/apparelGW/dec23atf/eoss/unrec/kotak/KA_3000._CB586338069_.jpg"
+              />
+            </a>
+          </div>
+          <!-- Item 3 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a
+              href="https://www.amazon.in/s?hidden-keywords=B0BZYY82MG%7CB0C4T9J84B%7CB0CCDJ1FBY%7CB0CCNJH3SQ%7CB0C5WZLT9X%7CB0C5RZC9KJ%7CB0C8D3T1D7%7CB0C5CWMKP8%7CB0C5MT52XY%7CB0CC24N1TR%7CB0CC9134YJ%7CB0C96BG373%7CB0C5RY45C3%7CB0BZZ16H34%7CB0CDC5N38P%7CB0CBPHZXRK%7CB0C7WCKCTX%7CB0C7W8KDYP%7CB0BY2Q1KQT%7CB0CC5YGT7Y%7CB0CC5WZ9SS%7CB0CB1D4ZYC%7CB0C7WBXCV8%7CB0C5MRZQXP%7CB0BY2RZL6D%7CB0BS6TKTWF%7CB0C4Q6DMT6%7CB0CCNKMBS1%7CB0C5MSSFS5%7CB0CDBRHNYP%7CB0C461ZMXQ%7CB0C8YQ77T8%7CB0C7WDWD7W%7CB0CBPJC7GY%7CB0C4KRRMTZ%7CB0C81YP6PJ%7CB0CC2JWCTR%7CB0C5MV3XS1%7CB0C49B7K78%7CB0C7WFH4V6%7CB0C5MSDS59%7CB0C8YRMGZF%7CB0C5MTBPHZ%7CB0CDC5CKCG%7CB0C5RYGF9X%7CB0C5WYKW2Y%7CB0C8NVK9WM%7CB0C5MPLM22%7CB0C24F4QKB&_encoding=UTF8&content-id=amzn1.sym.fc20a965-eabb-4c7c-b798-b240cbad8998&pd_rd_r=4115afb2-fdd6-467f-aef5-7a68894adc7a&pd_rd_w=ayih4&pd_rd_wg=2Rp3v&pf_rd_p=fc20a965-eabb-4c7c-b798-b240cbad8998&pf_rd_r=HCT9ZWYHRNCHMVQJJKDA"
+            >
+              <img
+                alt="New Launches"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img22/wearables/BAU_GW/New_launchGW_tallhero_3000x1200._CB597027259_.jpg"
+                height="100%"
+                width="3000px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img22/wearables/BAU_GW/New_launchGW_tallhero_3000x1200._CB597027259_.jpg"
+              />
+            </a>
+          </div>
+          <!-- Item 4 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a
+              href="https://www.amazon.in/l/976442031/?_encoding=UTF8&pd_rd_w=s4Rw2&content-id=amzn1.sym.5a8ec9c2-1d38-4ccb-b6a1-13c5b3f290ae&pf_rd_p=5a8ec9c2-1d38-4ccb-b6a1-13c5b3f290ae&pf_rd_r=Q8QJ3RBP8XETM5QP588J&pd_rd_wg=qQzTt&pd_rd_r=3a1be1fe-4e12-4d89-bf45-b1fe3b05147f"
+            >
+              <img
+                alt="Amazon Home Shopping Spree"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/OHL_HSS/3000x1200-heroUnrec._CB570990004_.jpg"
+                height="100%"
+                width="1500px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/OHL_HSS/3000x1200-heroUnrec._CB570990004_.jpg"
+              />
+            </a>
+          </div>
+          <!-- Item 5 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a
+              href="https://www.amazon.in/s/?_encoding=UTF8&i=toys&bbn=56818484031&rh=n%3A56818484031%2Cp_36%3A2485524031%2Cp_n_deal_type%3A26921224031&dc=&ds=v1%3Ae6S5SRLwQqowIj4%2Bt41jsvp9QiDYdHbbaFYPE0Sbli4&qid=1702085490&rnid=26921223031&ref=sr_nr_p_n_deal_type_2&pd_rd_w=fh2rF&content-id=amzn1.sym.ef32ebd9-c20b-4a10-8fa4-c3abdd99d380&pf_rd_p=ef32ebd9-c20b-4a10-8fa4-c3abdd99d380&pf_rd_r=Q8QJ3RBP8XETM5QP588J&pd_rd_wg=qQzTt&pd_rd_r=3a1be1fe-4e12-4d89-bf45-b1fe3b05147f"
+            >
+              <img
+                alt="Gifts under INR 499"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img22/Toys/HTL2023/GW/Homepage_DesktopHeroTemplate_3000x1200-Toy-Fiesta-APAY_2x_unrec._CB570529351_.jpg"
+                height="100%"
+                width="1500px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img22/Toys/HTL2023/GW/Homepage_DesktopHeroTemplate_3000x1200-Toy-Fiesta-APAY_2x_unrec._CB570529351_.jpg"
+              />
+            </a>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a
+              href="https://www.amazon.in/b/?_encoding=UTF8&node=1389401031&ref_=hero1_WLDUber&pd_rd_w=uXPSg&content-id=amzn1.sym.fd9d5d22-604a-4932-84e6-7b96703885a1&pf_rd_p=fd9d5d22-604a-4932-84e6-7b96703885a1&pf_rd_r=Q8QJ3RBP8XETM5QP588J&pd_rd_wg=qQzTt&pd_rd_r=3a1be1fe-4e12-4d89-bf45-b1fe3b05147f"
+            >
+              <img
+                alt="op"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img22/Wireless/devjyoti/GW/Uber/Nov/D103625178_DesktopTallHero_3000x1200._CB574597993_.jpg"
+                height="100%"
+                width="1500px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img22/Wireless/devjyoti/GW/Uber/Nov/D103625178_DesktopTallHero_3000x1200._CB574597993_.jpg"
+              />
+            </a>
+          </div>
+
+          <!-- Item 7 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a
+              href="https://www.amazon.in/s/?_encoding=UTF8&i=fashion&bbn=22371749031&rh=n%3A22371749031%2Cp_36%3A-49900%2Cp_72%3A1318477031&s=shoes&dc=&fs=true&ds=v1%3A9VfvFyVctsh500jjQ1hiGbIdonHtz1yTOe0s%2BHj1dys&qid=1676568612&rnid=1318475031&ref=sr_nr_p_72_2&pd_rd_w=1rel7&content-id=amzn1.sym.09f2df12-b7ed-4c6d-a739-65eb4b999384&pf_rd_p=09f2df12-b7ed-4c6d-a739-65eb4b999384&pf_rd_r=Q8QJ3RBP8XETM5QP588J&pd_rd_wg=qQzTt&pd_rd_r=3a1be1fe-4e12-4d89-bf45-b1fe3b05147f"
+            >
+              <img
+                alt="Amazon fashion"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Dec23/Shoes/EOSS/Unrec/Kotak/Sports/Frame_320_3000pc._CB586293054_.jpg"
+                height="100%"
+                width="1500px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Dec23/Shoes/EOSS/Unrec/Kotak/Sports/Frame_320_3000pc._CB586293054_.jpg"
+              />
+            </a>
+          </div>
+
+          <!-- Item 8 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a
+              href="https://www.amazon.in/l/976442031/?_encoding=UTF8&pd_rd_w=Hgi2W&content-id=amzn1.sym.91a16fce-6be7-498d-823f-3c9372ca195d&pf_rd_p=91a16fce-6be7-498d-823f-3c9372ca195d&pf_rd_r=Q8QJ3RBP8XETM5QP588J&pd_rd_wg=qQzTt&pd_rd_r=3a1be1fe-4e12-4d89-bf45-b1fe3b05147f"
+            >
+              <img
+                alt="Amazon Home Shopping Spree"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/OHL_HSS/3000x1200-heroUnrec._CB570990004_.jpg"
+                height="100%"
+                width="1500px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/OHL_HSS/3000x1200-heroUnrec._CB570990004_.jpg"
+              />
+            </a>
+          </div>
+
+          <!-- Item 9 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a
+              href="https://www.amazon.in/s/?_encoding=UTF8&rh=n%3A1374357031&fs=true&ref=lp_1374357031_sar&pd_rd_w=jWmMk&content-id=amzn1.sym.71330af3-9a4d-4742-af99-45b38f6547d1&pf_rd_p=71330af3-9a4d-4742-af99-45b38f6547d1&pf_rd_r=Q8QJ3RBP8XETM5QP588J&pd_rd_wg=qQzTt&pd_rd_r=3a1be1fe-4e12-4d89-bf45-b1fe3b05147f"
+            >
+              <img
+                alt="Amazon fashion"
+                src="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img23/Beauty/GW/Dec/19/unrecatf/pc/PC-GW-TEMPLATE._CB586299856_.jpg"
+                height="100%"
+                width="1500px"
+                data-a-hires="https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/G/31/img23/Beauty/GW/Dec/19/unrecatf/pc/PC-GW-TEMPLATE._CB586299856_.jpg"
+              />
+            </a>
+          </div>
+        </div>
+        <!-- Slider indicators -->
+        <div
+          class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2"
+        >
+          <button
+            type="button"
+            class="w-3 h-3 rounded-full"
+            aria-current="true"
+            aria-label="Slide 1"
+            data-carousel-slide-to="0"
+          ></button>
+          <button
+            type="button"
+            class="w-3 h-3 rounded-full"
+            aria-current="false"
+            aria-label="Slide 2"
+            data-carousel-slide-to="1"
+          ></button>
+          <button
+            type="button"
+            class="w-3 h-3 rounded-full"
+            aria-current="false"
+            aria-label="Slide 3"
+            data-carousel-slide-to="2"
+          ></button>
+          <button
+            type="button"
+            class="w-3 h-3 rounded-full"
+            aria-current="false"
+            aria-label="Slide 4"
+            data-carousel-slide-to="3"
+          ></button>
+          <button
+            type="button"
+            class="w-3 h-3 rounded-full"
+            aria-current="false"
+            aria-label="Slide 5"
+            data-carousel-slide-to="4"
+          ></button>
+          <button
+            type="button"
+            class="w-3 h-3 rounded-full"
+            aria-current="false"
+            aria-label="Slide 6"
+            data-carousel-slide-to="5"
+          ></button>
+          <button
+            type="button"
+            class="w-3 h-3 rounded-full"
+            aria-current="false"
+            aria-label="Slide 7"
+            data-carousel-slide-to="6"
+          ></button>
+        </div>
+        <!-- Slider controls -->
+        <button
+          type="button"
+          class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          data-carousel-prev
+        >
+          <span
+            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+          >
+            <svg
+              class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 1 1 5l4 4"
+              />
+            </svg>
+            <span class="sr-only">Previous</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          data-carousel-next
+        >
+          <span
+            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+          >
+            <svg
+              class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 9 4-4-4-4"
+              />
+            </svg>
+            <span class="sr-only">Next</span>
+          </span>
+        </button>
+      </div>
+
+      <!-- Cards Section -->
+      <div
+        class="grid grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-2 gap-4 px-4"
+      >
+        <!-- Card -->
+        <div class="bg-white p-4">
+          <a
+            href="./assets/categories/stationaries.html"
+            class="text-sm md:text-xl font-bold"
+            >Stationaries</a
+          >
+          <img src="assets/1.jpg" class="my-3" />
+          <p class="text-[#007185] text-xs">See More</p>
+        </div>
+
+        <div class="bg-white p-4">
+          <a
+            href="./assets/categories/plants.html"
+            class="text-sm md:text-xl font-bold"
+            >Plants</a
+          >
+          <img src="assets/2.jpg" class="my-3" />
+          <p class="text-[#007185] text-xs">See More</p>
+        </div>
+
+        <div class="bg-white p-4">
+          <a
+            href="./assets/categories/hygiene.html"
+            class="text-sm md:text-xl font-bold"
+            >Hygiene</a
+          >
+          <img src="assets/3.jpg" class="my-3" />
+          <p class="text-[#007185] text-xs">See More</p>
+        </div>
+
+        <div class="bg-white p-4">
+          <a
+            href="./assets/categories/cosmetics.html"
+            class="text-sm md:text-xl font-bold"
+            >Cosmetics</a
+          >
+          <img src="assets/4.jpg" class="my-3" />
+          <p class="text-[#007185] text-xs">See More</p>
+        </div>
+
+        <div class="bg-white p-4">
+          <a
+            href="./assets/categories/mini-devices.html"
+            class="text-sm md:text-xl font-bold"
+            >Mini-Devices</a
+          >
+          <img src="assets/5.jpg" class="my-3" />
+          <p class="text-[#007185] text-xs">See More</p>
+        </div>
+
+        <div class="bg-white p-4">
+          <a
+            href="./assets/categories/toys.html"
+            class="text-sm md:text-xl font-bold"
+            >Toys</a
+          >
+          <img src="assets/6.jpg" class="my-3" />
+          <p class="text-[#007185] text-xs">See More</p>
+        </div>
+
+        <div class="bg-white p-4">
+          <a
+            href="./assets/categories/gym-instrument.html"
+            class="text-sm md:text-xl font-bold"
+            >Gym instruments</a
+          >
+          <img src="assets/7.jpg" class="my-3" />
+          <p class="text-[#007185] text-xs">See More</p>
+        </div>
+
+        <div class="bg-white p-4">
+          <a
+            href="./assets/categories/pets.html"
+            class="text-sm md:text-xl font-bold"
+            >Pets</a
+          >
+          <img src="assets/8.jpg" class="my-3" />
+          <p class="text-[#007185] text-xs">See More</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="mt-4">
+      <div
+        class="bg-[#37475A] h-12 flex justify-center items-center text-white font-semibold"
+      >
+        <a href="#header">Back to Top</a>
+      </div>
+
+      <div
+        class="bg-[#232F3E] h-auto text-[#DDDDDD] md:text-sm leading-6 text-[12px] py-20 flex flex-wrap justify-evenly items-start"
+      >
+        <ul>
+          <li class="font-bold text-white">Get to Know</li>
+          <li>Careers</li>
+          <li>Blog</li>
+          <li>About Amazon</li>
+          <li>Investor Relations</li>
+          <li>Amazon Devices</li>
+          <li>Amazon Science</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Connect with Us</li>
+          <li>Facebook</li>
+          <li>Twitter</li>
+          <li>Instagram</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Make Money with Us</li>
+          <li>Sell on Amazon</li>
+          <li>Sell on Amazon Accelerator</li>
+          <li>Protect and Build Your Brand</li>
+          <li>Amazon Global Selling</li>
+          <li>Become an Affliate</li>
+          <li>Fulfilment by Amazon</li>
+          <li>Advertise Your Products</li>
+          <li>Amazon Pay on Merchants</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Let Us Help You</li>
+          <li>COVID-19 and Amazon</li>
+          <li>Your Account</li>
+          <li>Returns Centre</li>
+          <li>100% Purchase Protection</li>
+          <li>100% Purchase Protection</li>
+          <li>Amazon App Download</li>
+          <li>Help</li>
+        </ul>
+      </div>
+      <!-- Language Section -->
+      <div
+        class="flex flex-col justify-center bg-[#37475A] border-t-[1px] flex-wrap border-t-slate-300 items-center border border-transparent p-1"
+      >
+        <div
+          class="h-auto md:h-15 flex justify-evenly items-center gap-3 flex-wrap text-white font-semibold md:text-sm text-[12px] pt-4"
+        >
+          <a href="#" class="border border-transparent p-1 hover:border-white">
+            <img
+              src="/assets/amazon_logo.png"
+              class="w-7 md:w-12 object-fill"
+            />
+          </a>
+
+          <select
+            class="text-white bg-transparent font-bold p-2 hover:border-white hover:border-opacity-100"
+          >
+            <option class="text-white bg-black">English</option>
+            <option class="text-white bg-black">Hindi</option>
+            <option class="text-white bg-black">Marathi</option>
+            <option class="text-white bg-black">Kannada</option>
+            <option class="text-white bg-black">Tamil</option>
+            <option class="text-white bg-black">Telugu</option>
+            <option class="text-white bg-black">Spanish</option>
+            <option class="text-white bg-black">German</option>
+          </select>
+        </div>
+
+        <div class="flex justify-center items-center">
+          <!-- Links to other Countries Webpage -->
+          <ul
+            class="flex justify-evenly gap-4 items-center text-white md:text-xs text-[7px] font-light w-[50vw] flex-wrap pt-3"
+          >
+            <li>Australia</li>
+            <li>Brazil</li>
+            <li>Canada</li>
+            <li>China</li>
+            <li>France</li>
+            <li>Germany</li>
+            <li>Italy</li>
+            <li>Japan</li>
+            <li>Mexico</li>
+            <li>Netherlands</li>
+            <li>Poland</li>
+            <li>United Kingdom</li>
+            <li>United States</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright Section  -->
+      <div
+        class="text-slate-400 bg-[#131A22] md:h-[100px] h-auto text-center flex justify-center items-center flex-wrap"
+      >
+        <ul
+          class="flex justify-evenly items-center flex-wrap w-100 p-4 leading-6 md:w-[40vw] font-normal md:gap-3 md:text-xs text-[12px] flex-wrap"
+        >
+          <li>Conditions of Use & Sale</li>
+          <li>Privacy & Notice</li>
+          <li>Interested-Based Ads</li>
+          <li>
+            <a href="https://github.com/Thoufiq-Uchiha-23" target="_blank"
+              ><i class="fa-brands fa-github fa-2xl" style="color: #ddd127"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://twitter.com/IzharThouf29718" target="_blank"
+              ><i
+                class="fa-brands fa-x-twitter fa-2xl"
+                style="color: #d1ba23"
+              ></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://discord.com/users/gokuthoufiq" target="_blank"
+              ><i class="fa-brands fa-discord fa-2xl" style="color: #eacd39"></i
+            ></a>
+          </li>
+          <li class="text-md">
+            &#169; DEC-2023 Made By
+            <a
+              href="https://github.com/Thoufiq-Uchiha-23"
+              target="_blank"
+              class="font-bold text-yellow-500 hover:text-emerald-300"
+              >Thoufiq</a
+            >
+          </li>
+          <li></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+      // Account and Lists Function
+      let accountCard = document.querySelector("#account-section-wrap");
+      function toggleMenu() {
+        accountCard.classList.toggle("open-menu");
+      }
+    </script>
+  </body>
+</html>

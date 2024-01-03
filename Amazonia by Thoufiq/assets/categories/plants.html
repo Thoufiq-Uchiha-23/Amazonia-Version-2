@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      * {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+      }
+
+      #productList {
+        display: grid;
+        position: relative;
+        grid-template-columns: 250px 250px 250px;
+        grid-template-rows: 400px 400px 400px 400px;
+        row-gap: 10px;
+        /* column-gap: 20px; */
+        place-items: center;
+        padding-top: 80px;
+        margin-left: 30px;
+      }
+
+      @media screen and (max-width: 800px) {
+        #productList {
+          grid-template-columns: 250px 250px;
+          grid-template-rows: 400px 400px 400px 400px 400px 400px;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        #productList {
+          grid-template-columns: 300px;
+          grid-template-rows: 350px 350px 350px 350px 350px 350px 350px 350px 350px 350px 350px 350px;
+        }
+      }
+
+      img {
+        border-radius: 15px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .product {
+        display: grid;
+        place-items: center;
+        justify-content: center;
+        place-self: stretch;
+        position: relative;
+        border-radius: 15px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        line-height: 20px;
+        padding: 10px 15px;
+        background-color: white;
+      }
+
+      #price {
+        text-align: center;
+        font-weight: bold;
+      }
+      #cartContainer {
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        right: -300px; /* Initially off-screen */
+        height: 100%;
+        width: 300px;
+        background-color: #37475a;
+        box-shadow: -5px 0px 10px 0px gray;
+        transition: right 0.3s ease-in-out;
+      }
+
+      @media screen and (max-width: 600px) {
+        #cartContainer {
+          width: 250px;
+        }
+      }
+
+      #cart {
+        padding: 10px;
+      }
+
+      .cart-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 10px;
+      }
+
+      #cartToggle {
+        z-index: 100;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      #cartCount {
+        z-index: 100;
+        position: absolute;
+        top: -15px;
+        right: -5px;
+        font-size: 18px;
+      }
+
+      .delete-icon {
+        cursor: pointer;
+        color: red;
+      }
+
+      /* Scroll bar customization */
+      ::-webkit-scrollbar {
+        width: 10px;
+        background: rgb(42, 51, 94);
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px #fde047;
+        border-radius: 10px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #fddf47cc;
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-300">
+    <header
+      class="absolute z-[100] top-0 w-[100%] h-[70px] bg-[#37475A] flex items-center justify-evenly font-extrabold text-4xl text-yellow-300"
+    >
+      <a href="/index.html" class="font-bold text-xl w-10 p-3 fixed left-0"
+        >Back</a
+      >
+      <a href="#" id="header" class="font-bold text-xl md:text-4xl">Plants</a>
+    </header>
+    <div id="productList" class="mx-auto justify-evenly"></div>
+    <div
+      id="cartContainer"
+      class="overflow-y-auto scroll-smooth scroll-auto scroll-p-0"
+    >
+      <div id="cart"></div>
+      <div id="cartToggle" onclick="toggleCart()">
+        <i class="fa-solid fa-cart-shopping fa-xl" style="color: #eace43"></i>
+        <div id="cartCount" class="text-yellow-300"></div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="mt-4">
+      <div
+        class="bg-[#37475A] h-12 flex justify-center items-center text-white font-semibold"
+      >
+        <a href="#header">Back to Top</a>
+      </div>
+
+      <div
+        class="bg-[#232F3E] h-auto text-[#DDDDDD] md:text-sm leading-6 text-[12px] py-20 flex flex-wrap justify-evenly items-start"
+      >
+        <ul>
+          <li class="font-bold text-white">Get to Know</li>
+          <li>Careers</li>
+          <li>Blog</li>
+          <li>About Amazon</li>
+          <li>Investor Relations</li>
+          <li>Amazon Devices</li>
+          <li>Amazon Science</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Connect with Us</li>
+          <li>Facebook</li>
+          <li>Twitter</li>
+          <li>Instagram</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Make Money with Us</li>
+          <li>Sell on Amazon</li>
+          <li>Sell on Amazon Accelerator</li>
+          <li>Protect and Build Your Brand</li>
+          <li>Amazon Global Selling</li>
+          <li>Become an Affliate</li>
+          <li>Fulfilment by Amazon</li>
+          <li>Advertise Your Products</li>
+          <li>Amazon Pay on Merchants</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Let Us Help You</li>
+          <li>COVID-19 and Amazon</li>
+          <li>Your Account</li>
+          <li>Returns Centre</li>
+          <li>100% Purchase Protection</li>
+          <li>100% Purchase Protection</li>
+          <li>Amazon App Download</li>
+          <li>Help</li>
+        </ul>
+      </div>
+      <!-- Language Section -->
+      <div
+        class="flex flex-col justify-center bg-[#37475A] border-t-[1px] flex-wrap border-t-slate-300 items-center border border-transparent p-1"
+      >
+        <div
+          class="h-auto md:h-15 flex justify-evenly items-center gap-3 flex-wrap text-white font-semibold md:text-sm text-[12px] pt-4"
+        >
+          <a href="#" class="border border-transparent p-1 hover:border-white">
+            <img
+              src="/assets/amazon_logo.png"
+              class="w-7 md:w-12 object-fill"
+            />
+          </a>
+
+          <select
+            class="text-white bg-transparent font-bold p-2 hover:border-white hover:border-opacity-100"
+          >
+            <option class="text-white bg-black">English</option>
+            <option class="text-white bg-black">Hindi</option>
+            <option class="text-white bg-black">Marathi</option>
+            <option class="text-white bg-black">Kannada</option>
+            <option class="text-white bg-black">Tamil</option>
+            <option class="text-white bg-black">Telugu</option>
+            <option class="text-white bg-black">Spanish</option>
+            <option class="text-white bg-black">German</option>
+          </select>
+        </div>
+
+        <div class="flex justify-center items-center">
+          <!-- Links to other Countries Webpage -->
+          <ul
+            class="flex justify-evenly gap-4 items-center text-white md:text-xs text-[7px] font-light w-[50vw] flex-wrap pt-3"
+          >
+            <li>Australia</li>
+            <li>Brazil</li>
+            <li>Canada</li>
+            <li>China</li>
+            <li>France</li>
+            <li>Germany</li>
+            <li>Italy</li>
+            <li>Japan</li>
+            <li>Mexico</li>
+            <li>Netherlands</li>
+            <li>Poland</li>
+            <li>United Kingdom</li>
+            <li>United States</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright Section  -->
+      <div
+        class="text-slate-400 bg-[#131A22] md:h-[100px] h-auto text-center flex justify-center items-center flex-wrap"
+      >
+        <ul
+          class="flex justify-evenly items-center flex-wrap w-100 p-4 leading-6 md:w-[40vw] font-normal md:gap-3 md:text-xs text-[12px] flex-wrap"
+        >
+          <li>Conditions of Use & Sale</li>
+          <li>Privacy & Notice</li>
+          <li>Interested-Based Ads</li>
+          <li>
+            <a href="https://github.com/Thoufiq-Uchiha-23" target="_blank"
+              ><i class="fa-brands fa-github fa-2xl" style="color: #ddd127"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://twitter.com/IzharThouf29718" target="_blank"
+              ><i
+                class="fa-brands fa-x-twitter fa-2xl"
+                style="color: #d1ba23"
+              ></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://discord.com/users/gokuthoufiq" target="_blank"
+              ><i class="fa-brands fa-discord fa-2xl" style="color: #eacd39"></i
+            ></a>
+          </li>
+          <li class="text-md">
+            &#169; DEC-2023 Made By
+            <a
+              href="https://github.com/Thoufiq-Uchiha-23"
+              target="_blank"
+              class="font-bold text-yellow-500 hover:text-emerald-300"
+              >Thoufiq</a
+            >
+          </li>
+          <li></li>
+        </ul>
+      </div>
+    </footer>
+    <script>
+      // Sample array of products
+      const products = [
+        {
+          id: 1,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/712BMsnV4LL._AC_UL600_SR600,400_.jpg",
+          name: "Bougainvillea multicolour plant live || live plant of multicolor Bougainvillea (Pack of 1)",
+          price: 195,
+          link: "https://www.amazon.in/Bougainvillea-multicolour-plant-live-multicolor/dp/B0CKF6TR7K/ref=zg_bsnr_g_3639087031_sccl_1/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 2,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/712BMsnV4LL._AC_UL600_SR600,400_.jpg",
+          name: "Grafted bougainvillea live plant multicolour || live plant of multigrafted Bougainvillea (Pack of 1)",
+          price: 195,
+          link: "https://www.amazon.in/Grafted-bougainvillea-plant-multicolour-Bougainvillea/dp/B0CKDZS7W6/ref=zg_bsnr_g_3639087031_sccl_2/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 3,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/7126K+kU7ZL._AC_UL600_SR600,400_.jpg",
+          name: "Green view-Grafted Rainbow roses Best color flower plant Climbing Rose Plant Perennial Hybrid - 1 Healthy Live Decorative Flowering Plant' 1-1.5 Ft Height in Nursery Grow Bag for Home Garden",
+          price: 229,
+          link: "https://www.amazon.in/Green-view-Grafted-Climbing-Perennial/dp/B0CNVJ5C2L/ref=zg_bsnr_g_3639087031_sccl_3/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 4,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/61oKiO5howL._AC_UL600_SR600,400_.jpg",
+          name: "Aparajita seeds all colours red, Highgermination (Pack of 18)",
+          price: 135,
+          link: "https://www.amazon.in/Aparajita-seeds-colours-Highgermination-Pack/dp/B0CM28NYWL/ref=zg_bsnr_g_3639087031_sccl_4/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 5,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/51DXfYOmjPL._AC_UL600_SR600,400_.jpg",
+          name: "Pink Rose Vine Live Plant creeper of May Queen (Rosa May Queen) Rose Pink color",
+          price: 156,
+          link: "https://www.amazon.in/Pink-Plant-creeper-Queen-color/dp/B0CM82HT75/ref=zg_bsnr_g_3639087031_sccl_5/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 6,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/71mneCoWFlL._AC_UL600_SR600,400_.jpg",
+          name: "Zinnia flower seeds all colours hybrid,high germination (20 seeds)",
+          price: 145,
+          link: "https://www.amazon.in/Zinnia-flower-colours-hybrid-germination/dp/B0CKLNZSVN/ref=zg_bsnr_g_3639087031_sccl_6/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 7,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/611MVoBnovL._AC_UL600_SR600,400_.jpg",
+          name: "Aparajita Seeds Mixed Color Pack Blue, Pink, White Double & Single Petals Aprajita Shankhpushpi Hybrid Butterfly Pea Seeds Medicinal Flower Plant Creeper Seeds For Home Gardening (Pack Of 30)",
+          price: 169,
+          link: "https://www.amazon.in/Aparajita-Shankhpushpi-Butterfly-Medicinal-Gardening/dp/B0CQ4C3W5F/ref=zg_bsnr_g_3639087031_sccl_7/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 8,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/91XS4m-CJQL._AC_UL600_SR600,400_.jpg",
+          name: "Green view Nepal Variety Rudraksha Live Plant - Original Vaiety",
+          price: 199,
+          link: "https://www.amazon.in/Green-view-Variety-Rudraksha-Original/dp/B0CKN356TR/ref=zg_bsnr_g_3639087031_sccl_8/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 9,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/41bGiofQnsL._AC_UL600_SR600,400_.jpg",
+          name: "Krishna Nursery Vanda Orchid Plant Rare Beautiful Variety Multicolour Vanda Orchid Flower Plant Special Combo(Pack OF 4) Healthy Live Plant",
+          price: 163,
+          link: "https://www.amazon.in/Krishna-Nursery-Beautiful-Variety-Multicolour/dp/B0CP3PM2XL/ref=zg_bsnr_g_3639087031_sccl_9/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 10,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/71te9W2q6aL._AC_UL600_SR600,400_.jpg",
+          name: "Mix Color Tulip Seeds Fresh Non-GMO Flower Seeds for Planting Home Garden Decor - 30+ Seeds Pack",
+          price: 189,
+          link: "https://www.amazon.in/Seeds-Non-GMO-Flower-Planting-Garden/dp/B0CKRK4ZZ7/ref=zg_bsnr_g_3639087031_sccl_10/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 11,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/41ggsR3-RnL._AC_UL600_SR600,400_.jpg",
+          name: "Mphmi Nursery Plants Live Delhi NCR Venus Flytrap, Dionaea muscipula - Plant",
+          price: 475,
+          link: "https://www.amazon.in/Krishna-Nursery-Paradise-Beautifull-Multicolour/dp/B0CMTFMFWT/ref=zg_bsnr_g_3639087031_sccl_11/261-0995420-4156552?psc=1",
+        },
+        {
+          id: 12,
+          image:
+            "https://images-eu.ssl-images-amazon.com/images/W/MEDIAX_792452-T2/images/I/51SVbh1j8JL._AC_UL600_SR600,400_.jpg",
+          name: "Kraft Seeds by 10CLUB Artificial Money Plant | Green Money Plant Leaves | 7 Stems | (Vase not Included)",
+          price: 627,
+          link: "https://www.amazon.in/Mphmi-Nursery-Flytrap-Dionaea-muscipula/dp/B0CN6S7KKC/ref=zg_bsnr_g_3639087031_sccl_12/261-0995420-4156552?psc=1",
+        },
+      ];
+
+      // Shopping cart
+      const cart = [];
+
+      // Function to display products
+      function displayProducts() {
+        let productListDiv = document.getElementById("productList");
+
+        // Clear existing content
+        productListDiv.innerHTML = "";
+
+        // Iterate through products and create HTML elements
+        products.forEach((product) => {
+          let productDiv = document.createElement("div");
+          productDiv.className = "product";
+          productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${
+            product.name
+          }" class="w-[100%] h-[180px] overflow-hidden object-cover flex-2"/>
+                    <a href="${product.link}" class="mt-2 text-xs flex-2">${
+            product.name
+          }</a>
+                    <p id="price" class="flex-3">Price: <span>&#8377;</span>${product.price.toFixed(
+                      2
+                    )}</p>
+                    <button onclick="addToCart(${
+                      product.id
+                    })" class="px-1 py-1 w-[100%] font-bold text-[#37475A] rounded-full text-md bg-yellow-500 relative b-0">Add to Cart</button>
+            `;
+          productListDiv.appendChild(productDiv);
+        });
+      }
+
+      // Function to add a product to the cart
+      function addToCart(productId) {
+        let selectedProduct = products.find(
+          (product) => product.id === productId
+        );
+        let existingItem = cart.find((item) => item.id === productId);
+
+        if (existingItem) {
+          existingItem.quantity++;
+        } else {
+          selectedProduct.quantity = 1;
+          cart.push(selectedProduct);
+        }
+
+        updateCart();
+        updateCartCount();
+      }
+
+      // Function to remove a product from the cart
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+        updateCartCount();
+      }
+
+      // Function to update the cart display
+      function updateCart() {
+        let cartDiv = document.getElementById("cart");
+        cartDiv.innerHTML =
+          '<h2 class="text-2xl font-bold text-center text-yellow-500 mb-2 mt-5">Shopping Cart</h2>';
+
+        // Iterate through cart items and create HTML elements
+        cart.forEach((item, index) => {
+          let cartItemDiv = document.createElement("div");
+          cartItemDiv.className = "cart-item";
+          cartItemDiv.innerHTML = `
+                <img src = "${item.image}" class="w-12 h-12 rounded-full">
+                <div class="flex flex-col gap-1 border-yellow-500 border-t-2 pt-3">
+                    <p class="text-yellow-300 text-[12px] line-clamp-1 w-[150px] h-15">${
+                      item.name
+                    }</p>
+                    <div class="text-yellow-300 text-[12px]"><span>&#8377;</span>${item.price.toFixed(
+                      2
+                    )} x ${item.quantity}</div>    
+                </div>
+                <span class="delete-icon" onclick="removeFromCart(${index})"><i class="fa-regular fa-trash-can"></i></span>
+            `;
+          cartDiv.appendChild(cartItemDiv);
+        });
+
+        // Display total
+        let total = cart.reduce(
+          (acc, item) => acc + item.price * item.quantity,
+          0
+        );
+        let totalDiv = document.createElement("div");
+        totalDiv.innerHTML = `<strong class="text-lg text-yellow-500 p-5">Total: <span>&#8377;</span>${total.toFixed(
+          2
+        )}</strong>
+        <button onclick="checkout()" class="px-2 py-2 mt-4 bg-green-500 text-white font-bold rounded-md">Checkout</button>
+        `;
+        cartDiv.appendChild(totalDiv);
+      }
+
+      // Function to update the cart count display
+      function updateCartCount() {
+        let cartCountDiv = document.getElementById("cartCount");
+        let itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+        cartCountDiv.innerHTML = `<span class="py-[3px] px-[6px] bg-red-800 font-bold rounded-full text-[10px] text-white text-center">${itemCount}</span>`;
+      }
+
+      // Function to toggle the cart visibility
+      function toggleCart() {
+        let cartContainer = document.getElementById("cartContainer");
+        let currentRightValue = parseInt(getComputedStyle(cartContainer).right);
+
+        // Toggle between off-screen and on-screen positions
+        cartContainer.style.right = currentRightValue === 0 ? "-300px" : "0";
+      }
+
+      function checkout() {
+        let cartDiv = document.getElementById("cart");
+
+        // Check if the cart is empty
+        if (cart.length === 0) {
+          alert("Your cart is empty. Add items before checking out.");
+          return;
+        }
+
+        // Display a confirmation message
+        let confirmationMessage = "Thank you for your order!\n\nItems:\n";
+        cart.forEach((item) => {
+          confirmationMessage += `${item.name} - $${item.price.toFixed(2)} x ${
+            item.quantity
+          }\n`;
+        });
+
+        // Display total
+        let total = cart.reduce(
+          (acc, item) => acc + item.price * item.quantity,
+          0
+        );
+        confirmationMessage += `\nTotal: $${total.toFixed(2)}`;
+
+        // Show the confirmation message
+        alert(confirmationMessage);
+
+        // Clear the cart
+        cart = [];
+        updateCart();
+        updateCartCount();
+      }
+
+      // Display products when the page loads
+      window.onload = () => {
+        displayProducts();
+        updateCartCount();
+      };
+    </script>
+  </body>
+</html>

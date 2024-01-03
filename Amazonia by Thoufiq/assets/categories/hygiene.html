@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hygiene</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      * {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+      }
+
+      #productList {
+        display: grid;
+        position: relative;
+        grid-template-columns: 250px 250px 250px;
+        grid-template-rows: 400px 400px 400px 400px;
+        row-gap: 10px;
+        /* column-gap: 20px; */
+        place-items: center;
+        padding-top: 80px;
+        margin-left: 30px;
+      }
+
+      @media screen and (max-width: 800px) {
+        #productList {
+          grid-template-columns: 250px 250px;
+          grid-template-rows: 400px 400px 400px 400px 400px 400px;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        #productList {
+          grid-template-columns: 300px;
+          grid-template-rows: 350px 350px 350px 350px 350px 350px 350px 350px 350px 350px 350px 350px;
+        }
+      }
+
+      img {
+        border-radius: 15px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .product {
+        display: grid;
+        place-items: center;
+        justify-content: center;
+        place-self: stretch;
+        position: relative;
+        border-radius: 15px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        line-height: 20px;
+        padding: 10px 15px;
+        background-color: white;
+      }
+
+      #price {
+        text-align: center;
+        font-weight: bold;
+      }
+      #cartContainer {
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        right: -300px; /* Initially off-screen */
+        height: 100%;
+        width: 300px;
+        background-color: #37475a;
+        box-shadow: -5px 0px 10px 0px gray;
+        transition: right 0.3s ease-in-out;
+      }
+
+      @media screen and (max-width: 600px) {
+        #cartContainer {
+          width: 250px;
+        }
+      }
+
+      #cart {
+        padding: 10px;
+      }
+
+      .cart-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 10px;
+      }
+
+      #cartToggle {
+        z-index: 100;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      #cartCount {
+        z-index: 100;
+        position: absolute;
+        top: -15px;
+        right: -5px;
+        font-size: 18px;
+      }
+
+      .delete-icon {
+        cursor: pointer;
+        color: red;
+      }
+
+      /* Scroll bar customization */
+      ::-webkit-scrollbar {
+        width: 10px;
+        background: rgb(42, 51, 94);
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px #fde047;
+        border-radius: 10px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #fddf47cc;
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-300">
+    <header
+      class="absolute z-[100] top-0 w-[100%] h-[70px] bg-[#37475A] flex items-center justify-evenly font-extrabold text-4xl text-yellow-300"
+    >
+      <a href="/index.html" class="font-bold text-xl w-10 p-3 fixed left-0"
+        >Back</a
+      >
+      <a href="#" id="header" class="font-bold text-xl md:text-4xl">Hygiene</a>
+    </header>
+    <div id="productList" class="mx-auto justify-evenly"></div>
+    <div
+      id="cartContainer"
+      class="overflow-y-auto scroll-smooth scroll-auto scroll-p-0"
+    >
+      <div id="cart"></div>
+      <div id="cartToggle" onclick="toggleCart()">
+        <i class="fa-solid fa-cart-shopping fa-xl" style="color: #eace43"></i>
+        <div id="cartCount" class="text-yellow-300"></div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="mt-4">
+      <div
+        class="bg-[#37475A] h-12 flex justify-center items-center text-white font-semibold"
+      >
+        <a href="#header">Back to Top</a>
+      </div>
+
+      <div
+        class="bg-[#232F3E] h-auto text-[#DDDDDD] md:text-sm leading-6 text-[12px] py-20 flex flex-wrap justify-evenly items-start"
+      >
+        <ul>
+          <li class="font-bold text-white">Get to Know</li>
+          <li>Careers</li>
+          <li>Blog</li>
+          <li>About Amazon</li>
+          <li>Investor Relations</li>
+          <li>Amazon Devices</li>
+          <li>Amazon Science</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Connect with Us</li>
+          <li>Facebook</li>
+          <li>Twitter</li>
+          <li>Instagram</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Make Money with Us</li>
+          <li>Sell on Amazon</li>
+          <li>Sell on Amazon Accelerator</li>
+          <li>Protect and Build Your Brand</li>
+          <li>Amazon Global Selling</li>
+          <li>Become an Affliate</li>
+          <li>Fulfilment by Amazon</li>
+          <li>Advertise Your Products</li>
+          <li>Amazon Pay on Merchants</li>
+        </ul>
+
+        <ul>
+          <li class="font-bold text-white">Let Us Help You</li>
+          <li>COVID-19 and Amazon</li>
+          <li>Your Account</li>
+          <li>Returns Centre</li>
+          <li>100% Purchase Protection</li>
+          <li>100% Purchase Protection</li>
+          <li>Amazon App Download</li>
+          <li>Help</li>
+        </ul>
+      </div>
+      <!-- Language Section -->
+      <div
+        class="flex flex-col justify-center bg-[#37475A] border-t-[1px] flex-wrap border-t-slate-300 items-center border border-transparent p-1"
+      >
+        <div
+          class="h-auto md:h-15 flex justify-evenly items-center gap-3 flex-wrap text-white font-semibold md:text-sm text-[12px] pt-4"
+        >
+          <a href="#" class="border border-transparent p-1 hover:border-white">
+            <img
+              src="/assets/amazon_logo.png"
+              class="w-7 md:w-12 object-fill"
+            />
+          </a>
+
+          <select
+            class="text-white bg-transparent font-bold p-2 hover:border-white hover:border-opacity-100"
+          >
+            <option class="text-white bg-black">English</option>
+            <option class="text-white bg-black">Hindi</option>
+            <option class="text-white bg-black">Marathi</option>
+            <option class="text-white bg-black">Kannada</option>
+            <option class="text-white bg-black">Tamil</option>
+            <option class="text-white bg-black">Telugu</option>
+            <option class="text-white bg-black">Spanish</option>
+            <option class="text-white bg-black">German</option>
+          </select>
+        </div>
+
+        <div class="flex justify-center items-center">
+          <!-- Links to other Countries Webpage -->
+          <ul
+            class="flex justify-evenly gap-4 items-center text-white md:text-xs text-[7px] font-light w-[50vw] flex-wrap pt-3"
+          >
+            <li>Australia</li>
+            <li>Brazil</li>
+            <li>Canada</li>
+            <li>China</li>
+            <li>France</li>
+            <li>Germany</li>
+            <li>Italy</li>
+            <li>Japan</li>
+            <li>Mexico</li>
+            <li>Netherlands</li>
+            <li>Poland</li>
+            <li>United Kingdom</li>
+            <li>United States</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright Section  -->
+      <div
+        class="text-slate-400 bg-[#131A22] md:h-[100px] h-auto text-center flex justify-center items-center flex-wrap"
+      >
+        <ul
+          class="flex justify-evenly items-center flex-wrap w-100 p-4 leading-6 md:w-[40vw] font-normal md:gap-3 md:text-xs text-[12px] flex-wrap"
+        >
+          <li>Conditions of Use & Sale</li>
+          <li>Privacy & Notice</li>
+          <li>Interested-Based Ads</li>
+          <li>
+            <a href="https://github.com/Thoufiq-Uchiha-23" target="_blank"
+              ><i class="fa-brands fa-github fa-2xl" style="color: #ddd127"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://twitter.com/IzharThouf29718" target="_blank"
+              ><i
+                class="fa-brands fa-x-twitter fa-2xl"
+                style="color: #d1ba23"
+              ></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://discord.com/users/gokuthoufiq" target="_blank"
+              ><i class="fa-brands fa-discord fa-2xl" style="color: #eacd39"></i
+            ></a>
+          </li>
+          <li class="text-md">
+            &#169; DEC-2023 Made By
+            <a
+              href="https://github.com/Thoufiq-Uchiha-23"
+              target="_blank"
+              class="font-bold text-yellow-500 hover:text-emerald-300"
+              >Thoufiq</a
+            >
+          </li>
+          <li></li>
+        </ul>
+      </div>
+    </footer>
+    <script>
+      // Sample array of products
+      const products = [
+        {
+          id: 1,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71DO2fxmxfL._AC_SX296_SY426_FMwebp_QL65_.jpg",
+          name: "Bindazzz Night Sanitary Pads|Pack of 16 thin Pads|XXL+|upto 0% Leaks|60% Longer & Wider back|Dry top sheet|Long lasting coverage|Faster absorption|36 cm Long|With disposable wrap",
+          price: 297,
+          link: "https://www.amazon.in/Whisper-Ultra-Night-Sanitary-Napkins/dp/B083WV4S85/ref=sr_1_5_mod_primary_new?keywords=hygiene&qid=1704013865&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-5",
+        },
+        {
+          id: 2,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51Jv36YekBL._AC_UL320_.jpg",
+          name: "Liquid Disinfectant for Floor Cleaner, Surface Disinfection , Personal Hygiene (Lime Fresh , 1L)",
+          price: 324,
+          link: "https://www.amazon.in/Dettol-Disinfectant-Cleaner-Home-Fresh/dp/B07QK29V9G/ref=sr_1_6?keywords=hygiene&qid=1704013865&sr=8-6",
+        },
+        {
+          id: 3,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71cvryHR3zL._AC_UL320_.jpg",
+          name: "Ultra Clean Sanitary Pads for Women|50 thin Pads|XL+|Hygiene & Comfort|Soft Wings|Dry top sheet|Suitable for Heavy flow|Odour free|31.7 cm Long|With disposable wrap",
+          price: 496,
+          link: "https://www.amazon.in/Whisper-Ultra-Clean-Sanitary-Napkins/dp/B087QK1P79/ref=sr_1_7?keywords=hygiene&qid=1704013865&sr=8-7",
+        },
+        {
+          id: 4,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61ildyzNgcL._AC_UL320_.jpg",
+          name: "Antiseptic Liquid for First Aid , Surface Disinfection and Personal Hygiene , 550ml (Pack of 2)",
+          price: 428,
+          link: "https://www.amazon.in/Dettol-Antiseptic-Liquid-550-Pack/dp/B07JHWFKFC/ref=sr_1_8?keywords=hygiene&qid=1704013865&sr=8-8",
+        },
+        {
+          id: 5,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/612lE8N1ZzL._AC_UL320_.jpg",
+          name: "Plus Expert Intimate Hygiene, 200ml, Hygiene Wash for Women, Vaginal Wash, Prevents Itching, Irritation & Dryness, Suitable For All Skin Types",
+          price: 321,
+          link: "https://www.amazon.in/VWash-Plus-Intimate-Hygiene-Wash/dp/B00S6KDGNE/ref=sr_1_9_mod_primary_new?keywords=hygiene&qid=1704013865&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-9",
+        },
+        {
+          id: 6,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61zBQx+dysL._AC_UL320_.jpg",
+          name: "Sanitary Disposal Bags | 75 Bags | Pad Disposable Bags for Discreet Disposal of Tampons, Condoms, Sanitary Pads, Panty Liner & Personal Hygiene Waste (Green)",
+          price: 215,
+          link: "https://www.amazon.in/Sirona-Sanitary-Napkin-Diapers-Disposal/dp/B01NAZVN8M/ref=sr_1_10?keywords=hygiene&qid=1704013865&sr=8-10",
+        },
+        {
+          id: 7,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61aE5TiTfVL._AC_UL320_.jpg",
+          name: "Natural pH Balanced Intimate Hygiene Wash for Women 100 ml with Tea Tree Oil & Chamomile Extract | Protects from Bacterial Infection and Soothes irritation",
+          price: 166,
+          link: "https://www.amazon.in/Moms-Chamomile-Bacterial-Infection-irritation/dp/B09TBB14RH/ref=sr_1_11?keywords=hygiene&qid=1704013865&sr=8-11",
+        },
+        {
+          id: 8,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61anIsFj9wL._AC_UL320_.jpg",
+          name: "Thyme Mint Mouthwash | Vitamin C Mouth Freshener For Dental Hygiene & Fresh Breath | No Artificial Flavors & Colors | Alcohol Free Mouth Wash for Men Women & Kids | Fights Germs | Pack of 1 (300ml)",
+          price: 224,
+          link: "https://www.amazon.in/Perfora-Freshener-Probiotics-Hyaluronic-Artificial/dp/B09JSYVM9Q/ref=sr_1_12?keywords=hygiene&qid=1704013865&sr=8-12",
+        },
+        {
+          id: 9,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/719YME-8z1L._AC_UL320_.jpg",
+          name: "Intimate Hygiene Wipes | pH Balanced Anti-bacterial Wipes with Tea Tree Oil & Neem Extracts | Avoid Itching, Odor & Allergies | Pack of 30 Individually Wrapped Wipes",
+          price: 219,
+          link: "https://www.amazon.in/Skin-Elements-Intimate-Wipes-Pack/dp/B07RV8ZFYY/ref=sr_1_13?keywords=hygiene&qid=1704013865&sr=8-13",
+        },
+        {
+          id: 10,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71o28gDrFvL._AC_UL320_.jpg",
+          name: "Intimate Wash with Aloe Vera, Tea Tree for Men Anti Bacterial, Anti Itch, Anti Odour | Better Private Parts Hygiene| pH Balanced Intimate |120 ml",
+          price: 369,
+          link: "https://www.amazon.in/Man-Matters-Intimate-Wash-Men/dp/B088QMNBFH/ref=sr_1_14?keywords=hygiene&qid=1704013865&sr=8-14",
+        },
+        {
+          id: 11,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/7183agrTfBL._AC_UL320_.jpg",
+          name: "Lactacyd - Bottle of 100 ml feminine hygiene wash",
+          price: 221,
+          link: "https://www.amazon.in/Lactacyd-Bottle-feminine-hygiene-wash/dp/B0882C147Q/ref=sr_1_15?brandId=berry&keywords=hygiene&qid=1704013865&sr=8-15",
+        },
+        {
+          id: 12,
+          image:
+            "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51VZ1D4IVOL._AC_UL320_.jpg",
+          name: "Copper Tongue Cleaner for Men and Women | For Fresh Breath & Bacteria Removal | Improved Taste Sense & Oral Hygiene | Easy to Use | 100% Pure Indian Copper Tongue Scraper To Prevent Bad Breath",
+          price: 209,
+          link: "https://www.amazon.in/Perfora-Copper-Tongue-Cleaner-Design/dp/B09NLYP2BF/ref=sr_1_17?keywords=hygiene&qid=1704013865&sr=8-17",
+        },
+      ];
+
+      // Shopping cart
+      const cart = [];
+
+      // Function to display products
+      function displayProducts() {
+        let productListDiv = document.getElementById("productList");
+
+        // Clear existing content
+        productListDiv.innerHTML = "";
+
+        // Iterate through products and create HTML elements
+        products.forEach((product) => {
+          let productDiv = document.createElement("div");
+          productDiv.className = "product";
+          productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${
+            product.name
+          }" class="w-[100%] h-[180px] overflow-hidden object-cover flex-2"/>
+                    <a href="${product.link}" class="mt-2 text-xs flex-2">${
+            product.name
+          }</a>
+                    <p id="price" class="flex-3">Price: <span>&#8377;</span>${product.price.toFixed(
+                      2
+                    )}</p>
+                    <button onclick="addToCart(${
+                      product.id
+                    })" class="px-1 py-1 w-[100%] font-bold text-[#37475A] rounded-full text-md bg-yellow-500 relative b-0">Add to Cart</button>
+            `;
+          productListDiv.appendChild(productDiv);
+        });
+      }
+
+      // Function to add a product to the cart
+      function addToCart(productId) {
+        let selectedProduct = products.find(
+          (product) => product.id === productId
+        );
+        let existingItem = cart.find((item) => item.id === productId);
+
+        if (existingItem) {
+          existingItem.quantity++;
+        } else {
+          selectedProduct.quantity = 1;
+          cart.push(selectedProduct);
+        }
+
+        updateCart();
+        updateCartCount();
+      }
+
+      // Function to remove a product from the cart
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+        updateCartCount();
+      }
+
+      // Function to update the cart display
+      function updateCart() {
+        let cartDiv = document.getElementById("cart");
+        cartDiv.innerHTML =
+          '<h2 class="text-2xl font-bold text-center text-yellow-500 mb-2 mt-5">Shopping Cart</h2>';
+
+        // Iterate through cart items and create HTML elements
+        cart.forEach((item, index) => {
+          let cartItemDiv = document.createElement("div");
+          cartItemDiv.className = "cart-item";
+          cartItemDiv.innerHTML = `
+                <img src = "${item.image}" class="w-12 h-12 rounded-full">
+                <div class="flex flex-col gap-1 border-yellow-500 border-t-2 pt-3">
+                    <p class="text-yellow-300 text-[12px] line-clamp-1 w-[150px] h-15">${
+                      item.name
+                    }</p>
+                    <div class="text-yellow-300 text-[12px]"><span>&#8377;</span>${item.price.toFixed(
+                      2
+                    )} x ${item.quantity}</div>    
+                </div>
+                <span class="delete-icon" onclick="removeFromCart(${index})"><i class="fa-regular fa-trash-can"></i></span>
+            `;
+          cartDiv.appendChild(cartItemDiv);
+        });
+
+        // Display total
+        let total = cart.reduce(
+          (acc, item) => acc + item.price * item.quantity,
+          0
+        );
+        let totalDiv = document.createElement("div");
+        totalDiv.innerHTML = `<strong class="text-lg text-yellow-500 p-5">Total: <span>&#8377;</span>${total.toFixed(
+          2
+        )}</strong>
+        <button onclick="checkout()" class="px-2 py-2 mt-4 bg-green-500 text-white font-bold rounded-md">Checkout</button>
+        `;
+        cartDiv.appendChild(totalDiv);
+      }
+
+      // Function to update the cart count display
+      function updateCartCount() {
+        let cartCountDiv = document.getElementById("cartCount");
+        let itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+        cartCountDiv.innerHTML = `<span class="py-[3px] px-[6px] bg-red-800 font-bold rounded-full text-[10px] text-white text-center">${itemCount}</span>`;
+      }
+
+      // Function to toggle the cart visibility
+      function toggleCart() {
+        let cartContainer = document.getElementById("cartContainer");
+        let currentRightValue = parseInt(getComputedStyle(cartContainer).right);
+
+        // Toggle between off-screen and on-screen positions
+        cartContainer.style.right = currentRightValue === 0 ? "-300px" : "0";
+      }
+
+      function checkout() {
+        let cartDiv = document.getElementById("cart");
+
+        // Check if the cart is empty
+        if (cart.length === 0) {
+          alert("Your cart is empty. Add items before checking out.");
+          return;
+        }
+
+        // Display a confirmation message
+        let confirmationMessage = "Thank you for your order!\n\nItems:\n";
+        cart.forEach((item) => {
+          confirmationMessage += `${item.name} - $${item.price.toFixed(2)} x ${
+            item.quantity
+          }\n`;
+        });
+
+        // Display total
+        let total = cart.reduce(
+          (acc, item) => acc + item.price * item.quantity,
+          0
+        );
+        confirmationMessage += `\nTotal: $${total.toFixed(2)}`;
+
+        // Show the confirmation message
+        alert(confirmationMessage);
+
+        // Clear the cart
+        cart = [];
+        updateCart();
+        updateCartCount();
+      }
+
+      // Display products when the page loads
+      window.onload = () => {
+        displayProducts();
+        updateCartCount();
+      };
+    </script>
+  </body>
+</html>
